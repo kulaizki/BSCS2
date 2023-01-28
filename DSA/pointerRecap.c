@@ -22,8 +22,9 @@ int main()
     int *p1 = &z;
     int **p2 = &p1;
 
-    printf("%d\n", ***ptr3);
-    printf("%d\n", **rp2);
-    printf("%d", **p2); // address of 
+    printf("%d\n", ***ptr3); // value of x
+    printf("%d\n", **rp2); // value of y
+    printf("%d", **p2); // value of z
+    printf("%d\n", *p2); // address of p1
 
 }
