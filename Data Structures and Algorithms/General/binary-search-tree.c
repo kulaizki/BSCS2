@@ -29,6 +29,7 @@ void printTreeRec(Node* root, int level) {
         printf("---<empty>--\n");
         return;
     }
+    
     printTabs(level);
     printf("Value = %d\n", root->data);
     printTabs(level);
