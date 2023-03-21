@@ -42,6 +42,4 @@ int main()
     printf("key1 value = %d\n", hashmap_get("key1"));
     printf("key2 value = %d\n", hashmap_get("key2"));
     printf("key3 value = %d\n", hashmap_get("key3"));
-
-    return 0;
 }
