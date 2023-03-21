@@ -26,5 +26,4 @@ int main()
     printf("%d\n", **rp2); // value of y
     printf("%d", **p2); // value of z
     printf("%d\n", *p2); // address of p1
-
 }
