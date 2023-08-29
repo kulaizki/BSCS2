@@ -36,6 +36,7 @@ int main() {
 }
 
 void insertFront(char elem, LIST *A) {
+
     LIST temp = (LIST)malloc(sizeof(struct node));
     temp->data = elem;
     temp->link = *A;

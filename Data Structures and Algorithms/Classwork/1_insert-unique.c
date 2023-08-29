@@ -6,7 +6,7 @@ typedef struct node {
     struct node *link;
 } *LIST;
 
-void insertUnique(char elem, LIST *A);
+void insertLastUnique(char elem, LIST *A);
 void displayList(LIST A);
 void freeList(LIST A);
 
@@ -27,7 +27,7 @@ int main() {
     freeList(L);
 }
 
-void insertUnique(char elem, LIST *A) {
+void insertLastUnique(char elem, LIST *A) {
 
     LIST *trav;
     for (trav = A; *trav != NULL && (*trav)->data != elem; trav = &(*trav)->link) {}
