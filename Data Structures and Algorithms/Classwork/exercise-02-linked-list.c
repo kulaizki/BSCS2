@@ -40,13 +40,13 @@ int main () {
 
 void insertFirstIfUnique(Studrec elem, StudList *L) {
 
-    StudList *trav;
-    for (trav = L; *trav != NULL && (*trav)->stud.ID != elem.ID; trav = &(*trav)->link) {}
-    if (*trav == NULL) {
+    StudList trav;
+    for (trav = *L; trav != NULL && trav->stud.ID != elem.ID; trav = trav->link) {}
+    if (trav == NULL) {
         StudList temp = (StudList)malloc(sizeof(struct node));
         temp->stud = elem;
-        temp->link = NULL;
-        *trav = temp;
+        temp->link = *L;
+        *L = temp;
     }
 }
 
