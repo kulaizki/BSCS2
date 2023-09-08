@@ -58,7 +58,7 @@ int allocSpace(VirtualHeap *V) {
 
 void deallocSpace(int indx, VirtualHeap *V) {
 
-    if (indx != -1 && indx < MAX) {
+    if (indx > -1 && indx < MAX) {
         V->H[indx].link = V->Avail;
         V->Avail = indx;
     }
