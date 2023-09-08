@@ -23,10 +23,15 @@ void displayList(CLIST C, VirtualHeap V);
 
 int main() {
 
-    CLIST C;
+    CLIST C = -1;
     VirtualHeap V;
 
     initHeap(&V);
+    insertFirst(&C, &V, 'A');
+    insertFirst(&C, &V, 'B');
+    insertFirst(&C, &V, 'C');
+    insertFirst(&C, &V, 'B');
+    deleteElem(&C, &V, 'B');
 
     displayList(C, V);
 }
