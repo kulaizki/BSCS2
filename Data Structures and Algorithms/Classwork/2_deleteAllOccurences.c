@@ -22,14 +22,14 @@ int main() {
     insertUnique('G', &L);
     insertUnique('D', &L);
 
-    insertFront('Y', &L);
+    insertFront('X', &L);
     insertUnique('D', &L);
     insertUnique('S', &L);
     insertUnique('S', &L);
     insertUnique('C', &L);
     insertUnique('C', &L);
     deleteAllOccurences('X', &L);
-    deleteAllOccurences('g', &L);
+    // deleteAllOccurences('G', &L);
 
     displayList(L);
     freeList(L);
@@ -61,7 +61,7 @@ void deleteAllOccurences(char elem, LIST *A) {
     while (*trav != NULL) {
         if ((*trav)->data == elem) {
             temp = *trav;
-            *trav = (*trav)->link;
+            *trav = temp->link;
             free(temp);
         } else {
             trav = &(*trav)->link;
