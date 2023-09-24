@@ -1,0 +1,21 @@
+.Button1 {
+    display: flex;
+    padding: 8px;
+    border-radius: 4px;
+    background-color: rgb(29, 29, 29);
+    transition: box-shadow .3s ease-in-out;
+}
+
+.Button1 p {
+    color: aliceblue;
+}
+
+.Button1:hover {
+    box-shadow: 0 0 8px gold;
+}
+
+.Button1.clicked {
+    background-color: red;
+    opacity: 0;
+    transition: background-color 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
