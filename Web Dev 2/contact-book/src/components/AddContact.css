@@ -1,0 +1,16 @@
+.Card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.Card input {
+    width: 32rem;
+    padding: 8px;
+    background-color: aliceblue;
+    border-radius: 4px;
+    color: black;
+    font-family: monospace;
+}

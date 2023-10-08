@@ -1,0 +1,21 @@
+.ContactCard {
+    background-color: rgb(69, 69, 69);
+    padding: 8px;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    width: 24rem;
+    transition: box-shadow .25s ease-in-out;
+}
+
+.ContactCard:hover {
+    cursor: pointer;
+    box-shadow: 0 0 8px gold;
+}
+
+.ContactCardButtons {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
