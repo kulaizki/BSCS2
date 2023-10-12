@@ -42,7 +42,7 @@ void displayHeader() {
 
 void displayStudent(Studtype S) {
     printf("\n%-10d", S.ID);
-    printf("%-16s %-24s %-3c", S.name.LN, S.name.FN, S.name.MI);
+    printf("%-15s %-24s %-3c", S.name.LN, S.name.FN, S.name.MI);
     printf("%-8s", S.course);
     printf("%-5d", S.yrLevel);
 }
