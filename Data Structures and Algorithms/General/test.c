@@ -41,7 +41,7 @@ void insertLast(LIST *L, int elem) {
     LIST temp = (LIST)malloc(sizeof(struct node));
     temp->data = elem;
     temp->link = NULL;
-    *trav = temp;
+    *L = temp;
 }
 
 void displayList(LIST L) {
