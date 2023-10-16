@@ -13,6 +13,7 @@ typedef LIST Dictionary[MAX];
 int hash(int x);
 void initialize(Dictionary D);
 void insert(Dictionary D, int x);
+void delete(Dictionary D, int x);
 void display(Dictionary D);
 
 int main() {
@@ -26,6 +27,7 @@ int main() {
     insert(D, 20);
     insert(D, 10);
     insert(D, 30);
+    delete(D, 20);
 
     display(D);
 }
@@ -45,13 +47,26 @@ void insert(Dictionary D, int x) {
     int indx = hash(x);
 
     LIST *trav;
-    for (trav = &D[indx]; *trav != NULL && (*trav)->data < x; trav = &(*trav)->link) {}
+    for (trav = D + indx; *trav != NULL && (*trav)->data < x; trav = &(*trav)->link) {}
     LIST temp = (LIST)malloc(sizeof(struct Node));
 
     if (temp != NULL) {
         temp->data = x;
         temp->link = *trav;
         *trav = temp;
+    }
+}
+
+void delete(Dictionary D, int x) {
+    int indx = hash(x);
+
+    LIST *trav;
+    for (trav = D + indx; *trav != NULL && x != (*trav)->data; trav = &(*trav)->link) {}
+
+    if (*trav != NULL) {
+        LIST temp = *trav;
+        *trav = temp->link;
+        free(temp);
     }
 }
 
