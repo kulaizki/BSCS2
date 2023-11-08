@@ -28,6 +28,7 @@ void Heapify(pQueue *q, int index) {
     }
 }
 
+
 void Insert(int elem, pQueue *q){
   int temp, index;
   q->heap[++q->lastIndex] = elem;
