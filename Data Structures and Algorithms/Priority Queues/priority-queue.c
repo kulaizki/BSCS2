@@ -28,7 +28,6 @@ void Heapify(pQueue *q, int index) {
     }
 }
 
-
 void Insert(int elem, pQueue *q){
   int temp, index;
   q->heap[++q->lastIndex] = elem;
@@ -126,10 +125,11 @@ void heapsort(int *arr, int size) {
     }
 }
 
-int main(void) 
-{   
+int main(void)  {   
+
     int arr [9]= {9,2,18,23,5,1,8,27,7};
     pQueue q;
+
     // Initialize(&q);
     // Insert(3, &q);
     // Insert(10, &q);
@@ -151,9 +151,11 @@ int main(void)
     // // DeleteMin(&q);
     // // DeleteMin(&q);
     // Display(q);
+
     heapsort(arr, 9);
     for(int x = 0; x < 9; x ++) {
         printf("%d ", arr[x]);
     }
+    
     return 0;
 }
