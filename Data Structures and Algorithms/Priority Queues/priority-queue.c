@@ -33,9 +33,7 @@ void Insert(int elem, pQueue *q){
   int temp, index;
   q->heap[++q->lastIndex] = elem;
   for(index = q->lastIndex; q->heap[index] < q->heap[(index-1)/2]; index = (index-1)/2){
-    temp = q->heap[index];
-    q->heap[index] = q->heap[(index - 1)/2];
-    q->heap[(index-1)/2] = temp;
+    swap(&q->heap[index], &q->heap[(index-1)/2]);
   }
 }
 
