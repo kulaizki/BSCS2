@@ -19,8 +19,7 @@ void heapSort(int arr[], int size);
  
 int main() {
 
-    queueType myQueue;
-    pQueue q = &myQueue;
+    pQueue q;
 
     initQueue(q);
     insertMax(q, 10);
@@ -64,8 +63,7 @@ void insertMax(pQueue q, int elem) {
  
 void deleteMax(pQueue q) {
 
-    if (q->last > -1)
-    {
+    if (q->last > -1) {
         int lastIndex = q->last;
         int temp = q->heap[0];
         q->heap[0] = q->heap[q->last];
