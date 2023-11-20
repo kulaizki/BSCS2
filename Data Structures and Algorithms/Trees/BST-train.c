@@ -116,21 +116,25 @@ bool isMemberIterative(Node root, int e) {
 
 void deleteMember(Node *root, int e) {
 
-    for (; *root != NULL && (*root)->elem != e; root = (*root)->elem > e ? &(*root)->LC : &(*root)->RC) {}
-    if (*root != NULL) {
-        Node *trav, temp;
-        if ((*root)->RC != NULL) {
-            for (trav = &(*root)->RC; (*trav)->LC != NULL; trav = &(*trav)->LC) {}
-            temp = *trav;
-            (*root)->elem = temp->elem;
-            *trav = (*trav)->RC;
-        } else {
-            temp = *root;
-            *root = (*root)->LC;
-        }
-        free(temp);
+    if (*root == NULL) return;
+
+    if (e < (*root)->elem) {
+        deleteMember(&(*root)->LC, e);
+    } else if (e > (*root)->elem) {
+        deleteMember(&(*root)->RC, e);
     } else {
-        printf("\nNode does not exist\n");
+        if ((*root)->LC == NULL) {
+            Node temp = (*root)->RC;
+            free(*root);
+            *root = temp;
+        } else if ((*root)->RC == NULL) {
+            Node temp = (*root)->LC;
+            free(*root);
+            *root = temp;
+        } else {
+            (*root)->elem = min((*root)->RC);
+            deleteMember(&(*root)->RC, (*root)->elem);
+        }
     }
 }
 
