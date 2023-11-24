@@ -28,9 +28,10 @@ bool isMemberIterative(Node root, int e);
 void delete(Node *root, int e);
 void deleteIterative(Node *root, int e);
 AList convertToAList(Node *root);
-
 int min(Node root);
+int minIterative(Node root);
 int max(Node root);
+int maxIterative(Node root);
 
 int main() {
 
@@ -48,10 +49,8 @@ int main() {
     
     printf("PreOrder Traversal\n");
     preOrder(tree);
-
     printf("\nPostOrder Traversal\n");
     postOrder(tree);
-    
     printf("\nInOrder Traversal\n");
     inOrder(tree);
 
@@ -62,7 +61,10 @@ int main() {
     printf("isMember (6): %d\n", isMemberIterative(tree, 6));
 
     printf("min: %d\n", min(tree));
+    printf("minIterative: %d\n", minIterative(tree));
     printf("max: %d\n", max(tree));
+    printf("maxIterative: %d\n", maxIterative(tree));
+
 }
 
 Node createNode(int data) {
@@ -89,7 +91,7 @@ void insert(Node *root, int e) {
 void insertIterative(Node *root, int elem) {
 	
 	Node *trav;
-	for (trav = root; *trav != NULL && (*trav)->elem; trav = elem < (*trav)->elem ? &(*trav)->LC : &(*trav)->RC) {}
+	for (trav = root; *trav != NULL && (*trav)->elem != elem; trav = elem < (*trav)->elem ? &(*trav)->LC : &(*trav)->RC) {}
 	
 	if (*trav == NULL) {
 		*trav = createNode(elem);
@@ -98,24 +100,29 @@ void insertIterative(Node *root, int elem) {
 
 void preOrder(Node node) {
 
-    printf("%d ", node->elem);
-    if(node->LC != NULL) preOrder(node->LC);
-    if(node->RC != NULL) preOrder(node->RC);
+    if (node != NULL) {
+        if(node->LC != NULL) preOrder(node->LC);
+        if(node->RC != NULL) preOrder(node->RC);
+        printf("%d ", node->elem);
+    }
 }
 
 void inOrder(Node node) {
 
-    if(node->LC != NULL) inOrder(node->LC);
-    printf("%d ", node->elem);
-    if(node->RC != NULL) inOrder(node->RC);
+    if (node != NULL) {
+        if(node->LC != NULL) inOrder(node->LC);
+        printf("%d ", node->elem);
+        if(node->RC != NULL) inOrder(node->RC);
+    }
 }
 
 void postOrder(Node node) {
 
-    if (node->LC != NULL) postOrder(node->LC);
-    if (node->RC != NULL) postOrder(node->RC);
-    printf("%d ", node->elem);
-
+    if (node != NULL) {
+        if (node->LC != NULL) postOrder(node->LC);
+        if (node->RC != NULL) postOrder(node->RC);
+        printf("%d ", node->elem);
+    }
 }
 
 int sum(Node root) {
@@ -179,7 +186,6 @@ void deleteIterative(Node *root, int e) {
 	}
 }
 
-
 int min(Node root) {
 
     return (root != NULL) ? (root->LC == NULL) ? root->elem : min(root->LC) : -1;
@@ -188,14 +194,28 @@ int min(Node root) {
 int minIterative(Node root) {
 	
 	int retval = -1;
-	while (root != NULL && root->LC != NULL) {
-		
-	}
+    if (root != NULL) {
+        for (;root->LC != NULL; root = root->LC) {}
+        retval = root->elem;
+    }
+
+    return retval;
 }
 
 int max(Node root) {
 
     return (root != NULL) ? (root->RC == NULL) ? root->elem : max(root->RC) : -1;
+}
+
+int maxIterative(Node root) {
+	
+	int retval = -1;
+    if (root != NULL) {
+        for (; root->RC != NULL; root = root->RC) {}
+        retval = root->elem;
+    }
+
+    return retval;
 }
 
 void displayTree(Node root, int level) {
@@ -210,6 +230,8 @@ void displayTree(Node root, int level) {
 
         printf("%d\n", root->elem);
         displayTree(root->LC, level + 1);
+    } else {
+        printf("No elements to display\n");
     }
 }
 
