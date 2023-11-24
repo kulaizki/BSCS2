@@ -40,8 +40,10 @@ int main() {
     insert(&tree, 4);
     insert(&tree, 2);
     insert(&tree, 5);
+    insert(&tree, 5);
     insertIterative(&tree, 1);
     insertIterative(&tree, 3);
+    insertIterative(&tree, 9);
     insertIterative(&tree, 9);
 
     delete(&tree, 1);
@@ -83,9 +85,11 @@ void insert(Node *root, int e) {
         *root = createNode(e);
     } else if (e < (*root)->elem) {
         insert(&(*root)->LC, e);
-    } else {
+    } else if (e > (*root)->elem) {
         insert(&(*root)->RC, e);
     }
+
+    return;
 }
 
 void insertIterative(Node *root, int elem) {
