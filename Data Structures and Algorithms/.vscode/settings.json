@@ -1,5 +1,10 @@
 {
     "files.associations": {
-        "type_traits": "c"
+        "type_traits": "c",
+        "array": "c",
+        "string": "c",
+        "string_view": "c",
+        "ranges": "c",
+        "span": "c"
     }
 }

@@ -234,21 +234,18 @@ void displayVHeap(VHeap V)
  	 if (VH->avail == -1) {
 		printf("Unsuccessful Insert of Product %s: Virtual Heap is Full.\n", P.prodID);
 	 } else {
-		while (*B != -1 && strcmp(VH->VH_node[*B].elem.prodID, P.prodID) != 0) {
-			if (strcmp(VH->VH_node[*B].elem.prodID, P.prodID) > 0) {
-				B = &VH->VH_node[*B].LC;
-			} else {
-				B = &VH->VH_node[*B].RC;
-			}
+		BST *trav;
+		for (trav = B; *trav != -1 && strcmp(VH->VH_node[*trav].elem.prodID, P.prodID) != 0;) {
+			trav = strcmp(VH->VH_node[*trav].elem.prodID, P.prodID) > 0 ? &VH->VH_node[*trav].LC : &VH->VH_node[*trav].RC;
 		}
 
-		if (*B == -1) {
+		if (*trav == -1) {
 			int idx = VH->avail;
 			VH->avail = VH->VH_node[VH->avail].RC;
 			VH->VH_node[idx].elem = P;
 			VH->VH_node[idx].LC = -1;
 			VH->VH_node[idx].RC = -1;
-			*B = idx;
+			*trav = idx;
 			printf("Successful Insert of Product %s.\n", P.prodID);
 		} else {
 			printf("Unsuccessful Insert of Product %s: Element exists.\n", P.prodID);

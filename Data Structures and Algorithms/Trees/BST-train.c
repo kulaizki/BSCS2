@@ -3,21 +3,32 @@
 #include <string.h>
 #include <stdbool.h>
 
+#define MAX 10
+
 typedef struct node {
     int elem;
     struct node *LC;
     struct node *RC;
 } *Node;
 
+typedef struct {
+	int elem[MAX];
+	int count;
+} AList;
+
 Node createNode(int data);
 void insert(Node *root, int e);
+void insertIterative(Node *root, int elem);
 void preOrder(Node node);
 void inOrder(Node node);
 void postOrder(Node node);
 int sum(Node root);
 bool isMember(Node root, int e);
 bool isMemberIterative(Node root, int e);
-void deleteMember(Node *root, int e);
+void delete(Node *root, int e);
+void deleteIterative(Node *root, int e);
+AList convertToAList(Node *root);
+
 int min(Node root);
 int max(Node root);
 
@@ -28,10 +39,13 @@ int main() {
     insert(&tree, 4);
     insert(&tree, 2);
     insert(&tree, 5);
-    insert(&tree, 1);
-    insert(&tree, 3);
+    insertIterative(&tree, 1);
+    insertIterative(&tree, 3);
+    insertIterative(&tree, 9);
 
-    deleteMember(&tree, 1);
+    delete(&tree, 1);
+    deleteIterative(&tree, 2);
+    
     printf("PreOrder Traversal\n");
     preOrder(tree);
 
@@ -70,6 +84,16 @@ void insert(Node *root, int e) {
     } else {
         insert(&(*root)->RC, e);
     }
+}
+
+void insertIterative(Node *root, int elem) {
+	
+	Node *trav;
+	for (trav = root; *trav != NULL && (*trav)->elem; trav = elem < (*trav)->elem ? &(*trav)->LC : &(*trav)->RC) {}
+	
+	if (*trav == NULL) {
+		*trav = createNode(elem);
+	}
 }
 
 void preOrder(Node node) {
@@ -114,14 +138,14 @@ bool isMemberIterative(Node root, int e) {
     return root == NULL ? false : true;
 }
 
-void deleteMember(Node *root, int e) {
+void delete(Node *root, int e) {
 
     if (*root == NULL) return;
 
     if (e < (*root)->elem) {
-        deleteMember(&(*root)->LC, e);
+        delete(&(*root)->LC, e);
     } else if (e > (*root)->elem) {
-        deleteMember(&(*root)->RC, e);
+        delete(&(*root)->RC, e);
     } else {
         if ((*root)->LC == NULL) {
             Node temp = (*root)->RC;
@@ -133,14 +157,40 @@ void deleteMember(Node *root, int e) {
             *root = temp;
         } else {
             (*root)->elem = min((*root)->RC);
-            deleteMember(&(*root)->RC, (*root)->elem);
+            delete(&(*root)->RC, (*root)->elem);
         }
     }
 }
 
+void deleteIterative(Node *root, int e) {
+	
+	Node *trav, temp;
+	for (trav = root; *trav != NULL && (*trav)->elem != e; trav = e < (*trav)->elem ? &(*trav)->LC : &(*trav)->RC) {}
+	
+	if (*trav != NULL) {
+		temp = *trav;
+		if (temp->LC != NULL && temp->RC != NULL) {
+			for (trav = &(*trav)->RC; (*trav)->LC != NULL; trav = &(*trav)->LC) {}
+			temp->elem = (*trav)->elem;
+			temp = *trav;
+		}
+		*trav = (*trav)->LC != NULL ? (*trav)->LC : (*trav)->RC;
+		free(temp);
+	}
+}
+
+
 int min(Node root) {
 
     return (root != NULL) ? (root->LC == NULL) ? root->elem : min(root->LC) : -1;
+}
+
+int minIterative(Node root) {
+	
+	int retval = -1;
+	while (root != NULL && root->LC != NULL) {
+		
+	}
 }
 
 int max(Node root) {
@@ -152,12 +202,18 @@ void displayTree(Node root, int level) {
 
     if (root != NULL) {
         displayTree(root->RC, level + 1);
-
-        for (int i = 0; i < level; i++) {
+		
+		int i;
+        for (i = 0; i < level; i++) {
             printf("   ");
         }
 
         printf("%d\n", root->elem);
         displayTree(root->LC, level + 1);
     }
+}
+
+AList convertToAList(Node *root) {
+	
+	
 }
