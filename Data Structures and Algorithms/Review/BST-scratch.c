@@ -18,11 +18,12 @@ int minIterative(BST B);
 int max(BST B);
 int maxIterative(BST B);    
 int sum (BST B);
-Boolean search(BST B);
-Boolean searchIterative(BST B);
+Boolean search(BST B, int e);
+Boolean searchIterative(BST B, int e);
 void displayPreOrder(BST B);
 void displayInOrder(BST B);
 void displayPostOrder(BST B);
+void displayAllOrder(BST B);
 
 int main() {
 
@@ -31,18 +32,24 @@ int main() {
     insert(&gdsc, 1);
     insert(&gdsc, 2);
     insert(&gdsc, 2);
-    insert(&gdsc, 3);
     insertIterative(&gdsc, 3);
-
-    printf("PreOrder\n");
-    displayPreOrder(gdsc);
-    printf("\nInOrder\n");
-    displayInOrder(gdsc);
-    printf("\nPostOrder\n");
-    displayPostOrder(gdsc);
+    insertIterative(&gdsc, 7);
+    insertIterative(&gdsc, 7);
+    displayAllOrder(gdsc);
 
     printf("\nmin: %d\n", min(gdsc));
+    printf("minIterative: %d\n", minIterative(gdsc));
     printf("max: %d\n", max(gdsc));
+    printf("maxIterative: %d\n", maxIterative(gdsc));
+
+    deleteIterative(&gdsc, 1);
+    deleteIterative(&gdsc, 1);
+    displayAllOrder(gdsc);
+
+    printf("\nsearch: %s\n", search(gdsc, 7) ? "7 found" : "7 not found");    
+    printf("search: %s\n", search(gdsc, 9) ? "9 found" : "9 not found");    
+    printf("searchIterative: %s\n", searchIterative(gdsc, 7) ? "7 found" : "7 not found");    
+    printf("searchIterative: %s\n", searchIterative(gdsc, 9) ? "9 found" : "9 not found");    
 }
 
 BST createNode(int e) {
@@ -73,9 +80,9 @@ void insert(BST *B, int e) {
 void insertIterative(BST *B, int e) {
 
     BST *trav;
-    for (trav = B; *trav != NULL; trav = e < (*trav)->e ? &(*trav)->LC : &(*trav)->RC) {}
+    for (trav = B; *trav != NULL && e != (*trav)->e; trav = (e < (*trav)->e) ? &(*trav)->LC : &(*trav)->RC) {}
 
-    if (trav == NULL) {
+    if (*trav == NULL) {
         BST temp = createNode(e);
         *trav = temp;
         printf("Successfully inserted [%d]\n", e);
@@ -86,6 +93,22 @@ void insertIterative(BST *B, int e) {
 
 void deleteIterative(BST *B, int e) {
 
+    BST *trav;
+    for (trav = B; *trav != NULL && e != (*trav)->e; trav = (e < (*trav)->e) ? &(*trav)->LC : &(*trav)->RC) {}
+
+    if (*trav != NULL) {
+        BST temp = *trav;
+        if (temp->LC != NULL && temp->RC != NULL) {
+            for (trav = &(*trav)->RC; (*trav)->LC != NULL; trav = &(*trav)->LC) {}
+            temp->e = (*trav)->e;
+            temp = *trav;
+        } 
+        *trav = (*trav)->LC != NULL ? (*trav)->LC : (*trav)->RC;
+        free(temp);
+        printf("Successfully deleted [%d]\n", e);
+    } else {
+        printf("Invalid delete, [%d] does not exist\n", e);
+    }
 }
 
 int min(BST B) {
@@ -95,6 +118,13 @@ int min(BST B) {
 
 int minIterative(BST B) {
 
+    int retval = -1;
+    if (B != NULL) {
+        for (; B->LC != NULL; B = B->LC) {} 
+        retval = B->e;
+    }
+
+    return retval;
 }
 
 int max(BST B) {
@@ -104,6 +134,14 @@ int max(BST B) {
 
 int maxIterative(BST B) {
 
+    int retval = -1;
+
+    if (B != NULL) {
+        for (; B->RC != NULL; B = B->RC) {}
+        retval = B->e;
+    }
+
+    return retval;
 }
 
 int sum (BST B) {
@@ -111,12 +149,16 @@ int sum (BST B) {
     return (B == NULL) ? 0 : B->e + sum(B->LC) + sum(B->RC);
 }
 
-Boolean search(BST B) {
+Boolean search(BST B, int e) {
 
+    return (B == NULL) ? FALSE : (e == B->e) ? TRUE : (e < B->e) ? search(B->LC, e) : search(B->RC, e);
 }
 
-Boolean searchIterative(BST B) {
+Boolean searchIterative(BST B, int e) {
 
+    for (; B != NULL && e != B->e; B = (e < B->e) ? B->LC : B->RC) {}
+
+    return (B == NULL) ? FALSE : TRUE;
 }
 
 void displayPreOrder(BST B) {
@@ -150,4 +192,14 @@ void displayPostOrder(BST B) {
     } else {
         printf("BST is empty");
     }
+}
+
+void displayAllOrder(BST B) {
+
+    printf("PreOrder Traversal\n");
+    displayPreOrder(B);
+    printf("\nInOrder Traversal\n");
+    displayInOrder(B);
+    printf("\nPostOrder Traversal\n");
+    displayPostOrder(B);
 }
