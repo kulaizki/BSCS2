@@ -32,6 +32,7 @@ int main() {
     insert(&gdsc, 2);
     insert(&gdsc, 2);
     insert(&gdsc, 3);
+    insertIterative(&gdsc, 3);
 
     printf("PreOrder\n");
     displayPreOrder(gdsc);
@@ -58,17 +59,29 @@ void insert(BST *B, int e) {
 
     if (*B == NULL) {
         *B = createNode(e);
+        printf("Successfully inserted [%d]\n", e);
     } else if (e < (*B)->e) {
         insert(&(*B)->LC, e);
     } else if (e > (*B)->e) {
         insert(&(*B)->RC, e);
+    } else {
+        printf("Invalid insert, [%d] exists\n", e);
+        return;
     }
-
-    return;
 }
 
 void insertIterative(BST *B, int e) {
 
+    BST *trav;
+    for (trav = B; *trav != NULL; trav = e < (*trav)->e ? &(*trav)->LC : &(*trav)->RC) {}
+
+    if (trav == NULL) {
+        BST temp = createNode(e);
+        *trav = temp;
+        printf("Successfully inserted [%d]\n", e);
+    } else {
+        printf("Invalid insert, [%d] exists\n", e);
+    }
 }
 
 void deleteIterative(BST *B, int e) {
