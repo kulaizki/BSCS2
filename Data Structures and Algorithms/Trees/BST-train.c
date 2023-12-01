@@ -27,11 +27,12 @@ bool isMember(Node root, int e);
 bool isMemberIterative(Node root, int e);
 void delete(Node *root, int e);
 void deleteIterative(Node *root, int e);
-AList convertToAList(Node *root);
 int min(Node root);
 int minIterative(Node root);
 int max(Node root);
 int maxIterative(Node root);
+AList convertToAList(Node *root);
+void convertAndDelete(Node *root, AList *result);
 
 int main() {
 
@@ -67,6 +68,12 @@ int main() {
     printf("max: %d\n", max(tree));
     printf("maxIterative: %d\n", maxIterative(tree));
 
+    AList A = convertToAList(&tree);
+    printf("Convert to Sorted Array List\n");
+    for (int i = 0; i < A.count; ++i) {
+        printf("%d ", A.elem[i]);
+    }
+    printf("\n");
 }
 
 Node createNode(int data) {
@@ -240,6 +247,23 @@ void displayTree(Node root, int level) {
 }
 
 AList convertToAList(Node *root) {
-	
-	
+
+    AList result;
+    result.count = 0; 
+
+    convertAndDelete(root, &result);
+
+    return result;
+}
+
+void convertAndDelete(Node *root, AList *result) {
+
+    if (*root != NULL) {
+        convertAndDelete(&(*root)->LC, result);
+        result->elem[result->count++] = (*root)->elem;
+        convertAndDelete(&(*root)->RC, result);
+
+        free(*root);
+        *root = NULL;
+    }
 }
