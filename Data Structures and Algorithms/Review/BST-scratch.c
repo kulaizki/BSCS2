@@ -30,11 +30,11 @@ int main() {
     BST gdsc = NULL;
 
     insert(&gdsc, 1);
-    insert(&gdsc, 2);
-    insert(&gdsc, 2);
     insertIterative(&gdsc, 3);
     insertIterative(&gdsc, 7);
     insertIterative(&gdsc, 7);
+    insert(&gdsc, 2);
+    insert(&gdsc, 2);
     displayAllOrder(gdsc);
 
     printf("\nmin: %d\n", min(gdsc));
@@ -172,11 +172,11 @@ void displayPreOrder(BST B) {
     }
 }
 
-void displayInOrder(BST B) {
+void displayInOrder(BST B) { // this prints in ascending order
 
     if (B != NULL) {
-        printf("%d ", B->e);
         if (B->LC != NULL) displayInOrder(B->LC);
+        printf("%d ", B->e);
         if (B->RC != NULL) displayInOrder(B->RC);
     } else {
         printf("BST is empty");
@@ -186,9 +186,9 @@ void displayInOrder(BST B) {
 void displayPostOrder(BST B) {
 
     if (B != NULL) {
-        printf("%d ", B->e);
         if (B->LC != NULL) displayPostOrder(B->LC);
         if (B->RC != NULL) displayPostOrder(B->RC);
+        printf("%d ", B->e);
     } else {
         printf("BST is empty");
     }
