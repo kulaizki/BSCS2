@@ -21,6 +21,7 @@ CList allocSpace(VHeap *VH);
 void deallocSpace(int idx, VHeap *VH);
 void insertFirst(CList *C, VHeap *VH, char *s);
 void insertLast(CList *C, VHeap *VH, char *s);
+void deleteAllOccurences(CList *C, VHeap *VH, char *s);
 void display(CList C, VHeap VH);
 
 int main() {
@@ -30,8 +31,11 @@ int main() {
     initHeap(&C, &VH);
     insertLast(&C, &VH, "www");
     insertLast(&C, &VH, "yyy");
+    insertLast(&C, &VH, "yyy");
     insertFirst(&C, &VH, "abc");
     insertFirst(&C, &VH, "zxc");
+
+    deleteAllOccurences(&C, &VH, "yyy");
 
     display(C, VH);
 }
@@ -76,6 +80,21 @@ void insertLast(CList *C, VHeap *VH, char *s) {
         strcpy(VH->H[idx].data, s);
         VH->H[idx].link = -1;
         *trav = idx;
+    }
+}
+
+void deleteAllOccurences(CList *C, VHeap *VH, char *s) {
+    if (*C != -1) {
+        CList *trav;
+        for (trav = C; *trav != -1;) {
+            if (strcmp(s, VH->H[*trav].data) != 0) {
+                trav = &(VH->H[*trav].link);
+            } else {
+                CList temp = *trav;
+                *trav = VH->H[temp].link;
+                deallocSpace(temp, VH);
+            }
+        }
     }
 }
 
