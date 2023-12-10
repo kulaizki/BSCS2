@@ -59,13 +59,7 @@ Graph createGraph(int v) {
 
     graph->matrix = (int**)malloc(v * sizeof(int*));
     for (int i = 0; i < v; ++i) {
-        graph->matrix[i] = (int*)malloc(v * sizeof(int));
-    }
-
-    for (int i = 0; i < v; ++i) {
-        for (int j = 0; j < v; ++j) {
-            graph->matrix[i][j] = 0;
-        }
+        graph->matrix[i] = (int*)calloc(v, sizeof(int));
     }
 
     return graph;

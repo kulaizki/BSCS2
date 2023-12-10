@@ -13,15 +13,9 @@ Graph createGraph(int v) {
     G->m = (int **)malloc(v * sizeof(int*));
 
     for (int i = 0; i < v; ++i) {
-        G->m[i] = (int *)malloc(v * sizeof(int));
+        G->m[i] = (int *)calloc(v, sizeof(int));
     }
-
-    for (int i = 0; i < v; ++i) {
-        for (int j = 0; j < v; ++j) {
-            G->m[i][j] = 0;
-        }
-    }
-
+    
     return G;
 }
 

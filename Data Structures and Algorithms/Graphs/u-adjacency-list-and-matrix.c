@@ -27,10 +27,7 @@ Graph createGraph(int v) {
 
     for (int i = 0; i < v; ++i) {
         graph->AL[i] = NULL;
-        graph->matrix[i] = (int*)malloc(v * sizeof(int));
-        for (int j = 0; j < v; ++j) {
-            graph->matrix[i][j] = 0; // Initialize matrix entries to 0
-        }
+        graph->matrix[i] = (int*)calloc(v, sizeof(int));
     }
 
     return graph;
