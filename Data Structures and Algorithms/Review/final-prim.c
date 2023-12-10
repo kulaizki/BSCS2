@@ -4,7 +4,7 @@
  *   1)  Graph G = (V, E)                                               *
  *   2)  V = {0, 1, 2, 3, 4}                                            *
  *                                                                      *
- * Steps of Prim�s Algorithm:                                           *
+ * Steps of Prim's Algorithm:                                           *
  *   1) Initialize set U to contain { 0 }                               *
  *      //In the program, starting vertex will be inputted by the user  *
  *   2) While (U != V)                                                  *
@@ -54,8 +54,14 @@ int main()
     *---------------------------------------------------------------------------------*/
  	printf("\n\n\nProblem #2:: "); 
     printf("\n------------"); 
+
+    int v;
+    printf("Input starting vertex: ");
+    scanf("%d", &v);
     
-    //Write code here
+    graphType G;
+    populateGraph(G);
+    displayPrimMST(primAlgo(G, v));
  	
     return 0; 
 } 
@@ -75,15 +81,46 @@ void populateGraph(graphType G)
 
 primMST primAlgo(graphType graph, int startVertex)
 {
-	 //Write code here
+    // Write code here
+    set U = {0};
+    primMST T;
+    int x, y, min, u, v, totalWeight, z = 0;
+
+    v = startVertex;
+    T.edgeCount = 0;
+    T.minCost = 0;
+    U[startVertex] = 1;
+
+    while (T.edgeCount < MAX - 1) {
+        min = INFINITY;
+        for (x = 0; x < MAX; x++) {
+            if (U[x] == 1) {
+                for (y = 0; y < MAX; y++) {
+                    if (min > graph[x][y] && U[y] == 0) {
+                        min = graph[x][y];
+                        u = y;
+                        v = x;
+                    }
+                }
+            }
+        }
+        T.edges[z].u = u;
+        T.edges[z].v = v;
+        T.edges[z++].weight = graph[v][u];
+        T.edgeCount++;
+        T.minCost += graph[v][u];
+        U[u] = 1;
+    }
+
+    return T;
 }
 
-void displayPrimMST(primMST T)
-{
-	int x;
-		
-	printf("\n%5s%5s", "Edge", "Cost");
- 
-    //Write code here
-	
+void displayPrimMST(primMST T) {
+    printf("\n%5s%5s", "Edge", "Cost");
+
+    for (int i = 0; i < T.edgeCount; i++) {
+        printf("\n%2d-%2d%5d", T.edges[i].u, T.edges[i].v, T.edges[i].weight);
+    }
+
+    printf("\n\nMinimum Cost: %d\n", T.minCost);
 }
