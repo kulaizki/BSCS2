@@ -55,12 +55,5 @@ int main() {
 
     display(G);
 
-    // Don't forget to free the allocated memory
-    for (int i = 0; i < G->v; ++i) {
-        free(G->m[i]);
-    }
-    free(G->m);
-    free(G);
-
     return 0;
 }
