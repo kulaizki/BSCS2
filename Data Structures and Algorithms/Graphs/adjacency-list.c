@@ -33,6 +33,7 @@ Graph createGraph(int v) {
 
 void addEdge(Graph graph, int src, int dest) {
 
+    // for undirected graph
     Node newNode = createNode(dest);
     newNode->next = graph->AL[src];
     graph->AL[src] = newNode;
