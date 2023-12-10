@@ -11,7 +11,7 @@ typedef struct Queue {
 typedef struct Graph {
     int v;
     int** matrix;
-} Graph;
+} *Graph;
 
 Queue* createQueue(unsigned capacity) {
     Queue* queue = (Queue*)malloc(sizeof(Queue));
@@ -53,8 +53,8 @@ int dequeue(Queue* queue) {
     return item;
 }
 
-Graph* createGraph(int v) {
-    Graph* graph = (Graph*)malloc(sizeof(Graph));
+Graph createGraph(int v) {
+    Graph graph = (Graph)malloc(sizeof(struct Graph));
     graph->v = v;
 
     graph->matrix = (int**)malloc(v * sizeof(int*));
@@ -71,11 +71,11 @@ Graph* createGraph(int v) {
     return graph;
 }
 
-void addEdge(Graph* graph, int src, int dest) {
+void addEdge(Graph graph, int src, int dest) {
     graph->matrix[src][dest] = 1;
 }
 
-void BFS(Graph* graph, int startVertex) {
+void BFS(Graph graph, int startVertex) {
     Queue* queue = createQueue(graph->v);
 
     bool* visited = (bool*)malloc(graph->v * sizeof(bool));
@@ -106,7 +106,7 @@ void BFS(Graph* graph, int startVertex) {
     free(queue);
 }
 
-void freeGraph(Graph* graph) {
+void freeGraph(Graph graph) {
     for (int i = 0; i < graph->v; ++i) {
         free(graph->matrix[i]);
     }
@@ -115,7 +115,7 @@ void freeGraph(Graph* graph) {
 }
 
 int main() {
-    Graph* graph = createGraph(5);
+    Graph graph = createGraph(5);
 
     addEdge(graph, 0, 1);
     addEdge(graph, 0, 4);
