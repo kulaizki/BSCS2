@@ -59,88 +59,98 @@ ArrayList convertBstToList(BST *B, VHeap *VH);   //Removes from the BST smallest
 void displayList(ArrayList A);                //displays the elements of the list
  
  
- int main( ) 
- {	
- /*---------------------------------------------------------------------------------
- * 	Problem #3 ::  1) Populate the Virtual heap and the BST by calling the function *
- *                    createMagicalBSTvheap()                                       *  
- *                 2) Call displayVHeap() to show the state of the virtual heap     * 
- *                 3) Call convertBstToList() and displayList()                     *
- *                 4) Call displayVHeap() to show the state of the virtual heap     * 
- *--------------------------------------------------------------------------------*/
- 	printf("\n\n\nProblem #3:: "); 
- 	printf("\n------------");
- 	//Declare variables needed for Problem #1
-  
-	//Write your code here
-  
-
-}
-
-/************************************************************
- *  Problem 1:: Function Definitions                          *
- ************************************************************/
- BST createMagicalBSTvheap(VHeap *VH)
- {
-	VHeap v = { { {{"1356", {"Ferrero", 200}, 250.75, 85},  8,  2 },
-	              {{"1703", {"Toblerone", 100}, 125.75, 60 }, -1, -1 },
-				  {{"1550", {"Cadbury", 120}, 200.00, 30}, 3, 13 },
- 	              {{"1450", {"Ferrero", 100},150.50, 50},  4, 10 }, 
-				  {{"1310", {"Nestle", 100}, 124.50, 70}, -1, -1 }, 
-				  {{"1688", {"Guylian", 50}, 99.75, 35}, -1, -1 },
- 	              {{"1901", {"Reese", 135}, 150.75, 20}, -1, 11 },
-				  {{"1701", {"Toblerone", 50}, 90.75, 80},  0,  9 },
-				  {{"1109", {"Patchi", 50}, 99.75, 35}, -1, 14 },
- 	              {{"1807", {"Mars", 100}, 150.75, 20},  1, -1 }, 
-				  {{"1455", {"Tango", 75}, 49.50, 100}, -1, -1 }, 
-				  {{"1150", {"Valor", 120}, 149.50, 90}, -1, -1 },
- 	              {{"1284", {"Lindt", 100}, 250.75, 15}, -1, -1 }, 
-				  {{"1601", {"Meiji", 75}, 75.50, 60}, -1,  5 }, 
-				  {{"1201", {"Kitkat", 50}, 97.75, 40}, -1, 12 },
-	           } ,  6 };
-	*VH = v;
-	return 7;	 	    
- }
- 
-void displayProduct(product P)
+int main() 
 {
-	printf("\n%-8s", P.prodID);
-    printf("%-10s", P.prodDesc.name);
-    printf("%-6d", P.prodDesc.weight);
-    printf("%-10.2f", P.prodPrice);
-    printf("%-6d", P.prodQty);	
+    printf("\n\n\nProblem #3:: "); 
+    printf("\n------------");
+  
+    // Declare variables needed for Problem #3
+    BST magicalBST;
+    VHeap virtualHeap;
+    ArrayList productList;
+
+    // Populate the Virtual heap and the BST
+    createMagicalBSTvheap(&virtualHeap);
+    magicalBST = virtualHeap.avail;
+
+    // Display the state of the virtual heap
+    displayVHeap(virtualHeap);
+
+    // Convert BST to List and display the List
+    productList = convertBstToList(&magicalBST, &virtualHeap);
+    displayList(productList);
+
+    // Display the state of the virtual heap after conversion
+    displayVHeap(virtualHeap);
+
+    return 0; 
 }
- 
- 
+
+// ...
+
 void displayVHeap(VHeap V)
 {
-	int x;
+    int x;
 
     printf("\n\nDetails of the Virtual Heap :: ");
     printf("\n------------------------------");
-    printf("\nAvailable Index  :: %d",  V.avail);
-	
+    printf("\nAvailable Index  :: %d", V.avail);
+
     printf("\n\n%10s", "Index");
     printf("%10s", "Prod ID");
-    printf("%15s", "LC Field");   
-	printf("%15s", "RC Field");
-	printf("\n%10s%10s%15s%15s", "-----", "-------","--------","--------");	
-     
-	//Write code here 
-	 
-	 
-	printf("\n\n"); system("Pause");
-}
- 
-ArrayList convertBstToList(BST *B, VHeap *VH)    //Removes from the BST smallest element to the biggest until BST is empty
-{
-      //Write code here
+    printf("%15s", "LC Field");
+    printf("%15s", "RC Field");
+    printf("\n%10s%10s%15s%15s", "-----", "-------", "--------", "--------");
 
+    for (x = 0; x < VH_SIZE; x++)
+    {
+        printf("\n%10d%10s%15d%15d", x, V.VH_node[x].elem.prodID, V.VH_node[x].LC, V.VH_node[x].RC);
+    }
+
+    printf("\n\n");
+    system("Pause");
+}
+
+ArrayList convertBstToList(BST *B, VHeap *VH)
+{
+    ArrayList productList;
+    productList.last = -1;
+
+    // Write code here to remove elements from the BST and add them to the List
+
+    return productList;
 }
 
 void displayList(ArrayList A)
 {
+    int i;
 
-     //Write code here
+    printf("\n\nDetails of the List :: ");
+    printf("\n----------------------");
 
+    if (A.last == -1)
+    {
+        printf("\nList is Empty!");
+    }
+    else
+    {
+        printf("\n%-8s", "Prod ID");
+        printf("%-10s", "Name");
+        printf("%-6s", "Weight");
+        printf("%-10s", "Price");
+        printf("%-6s", "Qty");
+        printf("\n%-8s", "-------");
+        printf("%-10s", "----");
+        printf("%-6s", "------");
+        printf("%-10s", "--------");
+        printf("%-6s", "---");
+
+        for (i = 0; i <= A.last; i++)
+        {
+            displayProduct(A.prod[i]);
+        }
+    }
+
+    printf("\n\n");
+    system("Pause");
 }

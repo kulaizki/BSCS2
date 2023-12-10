@@ -84,11 +84,11 @@ primMST primAlgo(graphType graph, int startVertex)
     // Write code here
     set U = {0};
     primMST T;
-    int x, y, min, u, v, totalWeight, z = 0;
-
-    v = startVertex;
     T.edgeCount = 0;
     T.minCost = 0;
+    int x, y, u, v, min, z = 0;
+
+    v = startVertex;
     U[startVertex] = 1;
 
     while (T.edgeCount < MAX - 1) {
