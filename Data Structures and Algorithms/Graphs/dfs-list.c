@@ -24,8 +24,9 @@ Graph* createGraph(int v) {
     graph->v = v;
 
     graph->adjacencyList = (Node**)malloc(v * sizeof(Node*));
-    for (int i = 0; i < v; ++i)
-        graph->adjacencyList[i] = NULL;
+    for (int i = 0; i < v; ++i) {
+        graph->adjacencyList[i] = NULL;        
+    }
 
     return graph;
 }

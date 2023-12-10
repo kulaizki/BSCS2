@@ -109,6 +109,7 @@ void freeGraph(Graph graph) {
 }
 
 int main() {
+    
     Graph graph = createGraph(5);
 
     addEdge(graph, 0, 1);
