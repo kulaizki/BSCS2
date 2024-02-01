@@ -1,4 +1,4 @@
-#### **LWR** is the study of the biography of Rizal, delves on the historial context of the **19th** century, and it is to inspire students to attain one's fullest human potential (do many things at the same time)
+**LWR** is the study of the biography of Rizal, delves on the historial context of the **19th** century, and it is to inspire students to attain one's fullest human potential (do many things at the same time)
 
 - the filipinos already know that they are opressed
 - he wasn't against the revolution, he just wanted lesser casualties
