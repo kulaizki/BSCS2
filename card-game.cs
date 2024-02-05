@@ -67,18 +67,23 @@ public static void Main(string[] args)
                 index++;
             }
         }
+        Console.WriteLine("New deck created.");
     }
 
     public static void Shuffle()
     {
         int n = deck.Length;
-        for (int i = n - 1; i > 0; i--)
-        {
+        if(n > 0){
+          for (int i = n - 1; i > 0; i--)
+          {
             int j = random.Next(0, i + 1);
             Tuple<string, string> temp = deck[i];
             deck[i] = deck[j];
             deck[j] = temp;
-        }
+          }
+            Console.WriteLine("Deck shuffled.");
+        }else{
+            Console.WriteLine("Unable to shuffle, deck is empty.");
     }
 
     public static void Deal(int numberOfCards)
