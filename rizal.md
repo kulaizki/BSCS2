@@ -6,3 +6,4 @@
 - he discovered some specimens and named them after him, to add Philippine identity in the scientific world
 - he felt inferior because of his body, so he improved himself
 - RA 1425 was mandated to teach LWR in all public and private schools and universities
+- Rizal as an unpaid endorser, propaganda, and tool of the state
