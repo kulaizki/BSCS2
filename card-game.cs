@@ -16,7 +16,7 @@ public static void Main(string[] args)
             Console.WriteLine("2. Shuffle");
             Console.WriteLine("3. Deal");
             Console.WriteLine("4. Display");
-            Console.WriteLine("5. Quit");
+            Console.WriteLine("5. Quit\n");
 
             Console.Write("Enter your choice (1-5): ");
             if (int.TryParse(Console.ReadLine(), out choice))
@@ -35,7 +35,14 @@ public static void Main(string[] args)
                         Deal(numberOfCardsToDeal);
                         break;
                     case 4:
-                        Display();
+                        if (deck != null && deck.Length > 0)
+                        {
+                            Display();
+                        } 
+                        else
+                        {
+                            Console.WriteLine("Unable to display, deck is empty.");
+                        }
                         break;
                     case 5:
                         Console.WriteLine("Exiting the program. Goodbye!");
@@ -73,17 +80,18 @@ public static void Main(string[] args)
     public static void Shuffle()
     {
         int n = deck.Length;
-        if(n > 0){
-          for (int i = n - 1; i > 0; i--)
-          {
-            int j = random.Next(0, i + 1);
-            Tuple<string, string> temp = deck[i];
-            deck[i] = deck[j];
-            deck[j] = temp;
-          }
+        if (n > 0){
+            for (int i = n - 1; i > 0; i--)
+            {
+                int j = random.Next(0, i + 1);
+                Tuple<string, string> temp = deck[i];
+                deck[i] = deck[j];
+                deck[j] = temp;
+            }
             Console.WriteLine("Deck shuffled.");
-        }else{
+        } else {
             Console.WriteLine("Unable to shuffle, deck is empty.");
+        }
     }
 
     public static void Deal(int numberOfCards)

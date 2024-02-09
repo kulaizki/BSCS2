@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = cs_test
-build_property.ProjectDir = C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Object-Oriented Programming\Card Game\
+build_property.ProjectDir = C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Card Game\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 
