@@ -1,0 +1,15 @@
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\bin\Debug\net8.0\Calculator.exe
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\bin\Debug\net8.0\Calculator.deps.json
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\bin\Debug\net8.0\Calculator.runtimeconfig.json
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\bin\Debug\net8.0\Calculator.dll
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\bin\Debug\net8.0\Calculator.pdb
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\obj\Debug\net8.0\Calculator.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\obj\Debug\net8.0\Calculator.AssemblyInfoInputs.cache
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\obj\Debug\net8.0\Calculator.AssemblyInfo.cs
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\obj\Debug\net8.0\Calculator.csproj.CoreCompileInputs.cache
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\obj\Debug\net8.0\Calculator.sourcelink.json
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\obj\Debug\net8.0\Calculator.dll
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\obj\Debug\net8.0\refint\Calculator.dll
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\obj\Debug\net8.0\Calculator.pdb
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\obj\Debug\net8.0\Calculator.genruntimeconfig.cache
+C:\Users\Lenovo\Desktop\code\Acad\BSCS2\Mobile Dev\Calculator\obj\Debug\net8.0\ref\Calculator.dll
